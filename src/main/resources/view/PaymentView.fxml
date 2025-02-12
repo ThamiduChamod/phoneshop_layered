@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paymentAnchorPane" prefHeight="760.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse71.layeredproject.phoneshoplayered.controller.PaymentPageController">
+   <children>
+      <ImageView fitHeight="875.0" fitWidth="1360.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../image/PaymentBackground.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="388.0" layoutY="195.0" opacity="0.87" prefHeight="250.0" prefWidth="216.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="180.0">
+         <children>
+            <VBox prefHeight="567.0" prefWidth="1061.0">
+               <children>
+                  <Label text="Payment Section">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="350.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="132.0" prefWidth="1060.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="100.0" fitWidth="118.0" onMouseClicked="#supplierOnAction">
+                                 <image>
+                                    <Image url="@../image/CustomerPayment.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <Label text="Spplier Payment">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="200.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView onMouseClicked="#plaseOrderOnAction">
+                                 <image>
+                                    <Image url="@../image/PlaseOrder.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <Label text="Plase Order">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="12.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="400.0" right="200.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="120.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

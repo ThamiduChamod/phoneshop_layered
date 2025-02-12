@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainLayout" prefHeight="760.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse71.layeredproject.phoneshoplayered.controller.MainPageController">
+   <children>
+      <ScrollPane prefHeight="200.0" prefWidth="526.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="1360.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="787.0" fitWidth="1366.0" layoutX="-6.0" layoutY="-1.0" AnchorPane.bottomAnchor="214.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+                     <image>
+                        <Image url="@../image/MainBackground.jpg" />
+                     </image>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="7.94">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </ImageView>
+                  <ImageView fitHeight="53.0" fitWidth="48.0" layoutX="35.0" layoutY="36.0" onMouseClicked="#menuBarOnAction" onMouseEntered="#menuMouseEntered" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="1277.0" AnchorPane.topAnchor="36.0">
+                     <image>
+                        <Image url="@../image/Menus.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="623.0" prefWidth="1524.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="550.0">
+                     <children>
+                        <Pane opacity="0.65" prefHeight="430.0" prefWidth="1360.0" style="-fx-background-color: #525252;">
+                           <effect>
+                              <BoxBlur height="255.0" width="0.0" />
+                           </effect>
+                        </Pane>
+                     </children>
+                     <effect>
+                        <BoxBlur height="209.0" />
+                     </effect>
+                  </Pane>
+                  <Pane fx:id="mainPane" onMouseEntered="#menuBarMouseEntered" onMouseExited="#menuBarMouseExited" opacity="0.87" prefHeight="760.0" prefWidth="300.0" style="-fx-background-color: #111;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="mouseEnterLbl" layoutX="168.0" layoutY="77.0" prefHeight="19.0" prefWidth="125.0" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="760.0" prefWidth="292.0">
+                           <children>
+                              <HBox prefHeight="77.0" prefWidth="306.0">
+                                 <children>
+                                    <Label text="Z mobile" textFill="GOLD">
+                                       <font>
+                                          <Font name="System Bold Italic" size="36.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="70.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="175.0" fitWidth="176.0" onMouseClicked="#gotoProfileOnAction" onMouseEntered="#mouseEntredOnAction" onMouseExited="#mouseExitedOnAction">
+                                       <image>
+                                          <Image url="@../image/MainProfile.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="22.0" prefWidth="306.0">
+                                 <children>
+                                    <Label text="User ID" textFill="GOLD">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="userIdLbl" prefHeight="20.0" prefWidth="205.0" text="Label" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="19.0" prefWidth="306.0">
+                                 <children>
+                                    <Label text="Date" textFill="GOLD">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="dateLbl" prefHeight="20.0" prefWidth="209.0" text="Label" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="35.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="20.0" prefWidth="283.0">
+                                 <children>
+                                    <Label text="Time" textFill="GOLD">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="timeLbl" text="Label" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="35.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="37.0" prefWidth="300.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#logOutBtnOnAction" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: #111;" text="Log Out" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="85.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="250.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="btnPane" layoutX="348.0" layoutY="435.0" opacity="0.67" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="580.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="1160.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <ImageView onMouseClicked="#addCustomerOnAction">
+                                             <image>
+                                                <Image url="@../image/Customer.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Label text="Add Customer">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="130.0" />
+                                       </HBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <ImageView onMouseClicked="#addItemOnAction">
+                                             <image>
+                                                <Image url="@../image/ItemAdd.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Label text="Add Item">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="12.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="160.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <ImageView onMouseClicked="#supplierOnAction">
+                                             <image>
+                                                <Image url="@../image/Supplier.jpg" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Label text="Add Supplier">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="8.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="160.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <ImageView onMouseClicked="#paymentOnAction">
+                                             <image>
+                                                <Image url="@../image/payment.png" />
+                                             </image>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                          <Label text="Payment">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="20.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="160.0" right="100.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
