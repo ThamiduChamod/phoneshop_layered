@@ -73,10 +73,12 @@ public class ItemBOImpl implements ItemBO {
         return categoryDAO.getAllBrandNames();
     }
 
+    @Override
     public Category findByName (String name) throws SQLException {
         return categoryDAO.findByName(name);
     }
 
+    @Override
     public String getNextPaymentID () throws SQLException, ClassNotFoundException {
        return paymentDAO.getNext();
     }

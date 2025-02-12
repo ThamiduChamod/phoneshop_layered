@@ -21,6 +21,7 @@ public class SupplierBOImpl implements SupplierBo {
     CategoryDAO categoryDAO = (CategoryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.CATEGORY);
 
 
+    @Override
     public boolean saveSupplier (Supplier supplierDTO, String brand) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
 
@@ -64,6 +65,7 @@ public class SupplierBOImpl implements SupplierBo {
         }
     }
 
+    @Override
     public boolean deleteSupplier(String supplierId) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
         try {
@@ -90,14 +92,17 @@ public class SupplierBOImpl implements SupplierBo {
         }
     }
 
+    @Override
     public boolean updateSupplier(Supplier supplierDTO) throws SQLException, ClassNotFoundException {
         return supplierDAO.update(supplierDTO);
     }
 
+    @Override
     public String getNextSupplierID () throws SQLException, ClassNotFoundException {
         return supplierDAO.getNext();
     }
 
+    @Override
     public ArrayList<Supplier> getAllSupplier () throws SQLException, ClassNotFoundException {
         return supplierDAO.getAll();
     }

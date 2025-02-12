@@ -12,6 +12,7 @@ public class LoginBOImpl implements LoginBO {
 
     LoginDAO loginDAO = (LoginDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.LOGIN);
 
+    @Override
     public ArrayList<Login> getAllLogins() throws SQLException, ClassNotFoundException {
         return loginDAO.getAll();
     }

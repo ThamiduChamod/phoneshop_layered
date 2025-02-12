@@ -13,21 +13,27 @@ public class CustomerBOImpl implements CustomerBO {
 
     CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.CUSTOMER);
 
+    @Override
     public boolean deleteCustomer(String customerId) throws SQLException, ClassNotFoundException {
         return customerDAO.delete(customerId);
     }
 
+    @Override
     public boolean saveCustomer (Customer customerDTO) throws SQLException, ClassNotFoundException {
         return customerDAO.save(customerDTO);
     }
 
+    @Override
     public String getNextCustomerId() throws SQLException, ClassNotFoundException {
         return customerDAO.getNext();
     }
+
+    @Override
     public ArrayList<Customer> getAllCustomers() throws SQLException, ClassNotFoundException {
         return customerDAO.getAll();
     }
 
+    @Override
     public boolean updateCustomer (Customer customerDTO) throws SQLException, ClassNotFoundException {
         return customerDAO.update(customerDTO);
     }

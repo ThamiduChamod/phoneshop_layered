@@ -12,10 +12,12 @@ public class SignInBOImpl implements SignInBO {
 
     SigninDAO signinDAO = (SigninDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.SIGNIN);
 
+    @Override
     public String getNextUserID () throws SQLException, ClassNotFoundException {
         return signinDAO.getNext();
     }
 
+    @Override
     public boolean saveUser (Signin signinDTO) throws SQLException, ClassNotFoundException {
         return signinDAO.save(signinDTO);
     }
