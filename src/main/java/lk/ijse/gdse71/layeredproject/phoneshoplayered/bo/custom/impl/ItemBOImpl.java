@@ -7,9 +7,6 @@ import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.ItemDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.PayDetailsDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.PaymentDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.db.DBConnection;
-import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.ItemDTO;
-import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.PayDetailDTO;
-import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.PaymentDTO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Category;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Item;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.PayDetail;
@@ -34,12 +31,14 @@ public class ItemBOImpl implements ItemBO {
         try {
             connection.setAutoCommit(false);
             for (Item itemDTO : itemDTOS) {
-                boolean isOrderDetailsSaved = itemDAO.save(itemDTO);
+                boolean isitemSaved = itemDAO.save(itemDTO);
 
-                if (isOrderDetailsSaved) {
+                if (isitemSaved) {
+                    System.out.println("save item");
                     boolean isSavePayment = paymentDAO.save(paymentDTO);
 
                     if (isSavePayment) {
+                        System.out.println("save payment");
                         PayDetail payDetailDTO = new PayDetail(
                                 paymentDTO.getPaymentID(),
                                 supplierId
@@ -47,6 +46,7 @@ public class ItemBOImpl implements ItemBO {
                         boolean isSavePaymentDetails = payDetailsDAO.save(payDetailDTO);
 
                         if (isSavePaymentDetails) {
+                            System.out.println("save payment details");
                             connection.commit();
                             return true;
                         }

@@ -363,10 +363,14 @@ public class ItemPageController implements Initializable {
 
         try {
             boolean isSave = itemBO.insertItem(itemDTOS,paymentDTO,supplierId);
+            System.out.println("11111111111111111111111111111111111111111");
             if (isSave) {
 
                 refeshPage();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION,"Item inserted successfully");
+                alert.showAndWait();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Failed to save item");
                 alert.showAndWait();
             }
         } catch (SQLException e) {
