@@ -4,6 +4,9 @@ import lk.ijse.gdse71.layeredproject.phoneshoplayered.bo.custom.OrderPaymentBO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.DAOFactory;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.*;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.db.DBConnection;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.ItemDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.OrderDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.PaymentDTO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Item;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Order;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Payment;
@@ -23,19 +26,19 @@ public class OrderPaymentBOImpl implements OrderPaymentBO {
     OrderDetailsDAO orderDetailsDAO = (OrderDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.ORDER_DETAILS);
 
     @Override
-    public boolean saveOrder(Payment paymentDTO, Order orderDTO) throws SQLException {
+    public boolean saveOrder(PaymentDTO paymentDTO, OrderDTO orderDTO) throws SQLException {
         // @connection: Retrieves the current connection instance for the database
         Connection connection = DBConnection.getInstance().getConnection();
         try {
             // @autoCommit: Disables auto-commit to manually control the transaction
             connection.setAutoCommit(false); // 1
 
-            boolean isSavePayment = paymentDAO.save(paymentDTO);
+            boolean isSavePayment = paymentDAO.save(new Payment(paymentDTO.getPaymentID(),paymentDTO.getDate(),paymentDTO.getTotal()));
             if (isSavePayment) {
 
                 System.out.println(orderDTO);
 
-                boolean isSaveOrder = orderDAO.save(orderDTO);
+                boolean isSaveOrder = orderDAO.save(new Order(orderDTO.getOrderID(),orderDTO.getOrderDate(),orderDTO.getPaymentID(),orderDTO.getCustomerID(),orderDTO.getOrderDetailsDTOS()));
                 if (isSaveOrder) {
                     boolean isOrderDetailsSaved = orderDetailsDAO.saveOrderDetailsList(orderDTO.getOrderDetailsDTOS());
 
@@ -96,8 +99,9 @@ public class OrderPaymentBOImpl implements OrderPaymentBO {
     }
 
     @Override
-    public Item findByName (String name) throws SQLException {
-        return itemDAO.findByName(name);
+    public ItemDTO findByName (String name) throws SQLException {
+        Item item = itemDAO.findByName(name);
+        return new ItemDTO(item.getItem_id(),item.getCategory_id(),item.getName(),item.getQty(),item.getPrice());
     }
 
 }

@@ -8,6 +8,7 @@ import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.CategoryDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.SupplierDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.db.DBConnection;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.CategoryDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.SupplierDTO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Category;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Supplier;
 
@@ -22,13 +23,14 @@ public class SupplierBOImpl implements SupplierBo {
 
 
     @Override
-    public boolean saveSupplier (Supplier supplierDTO, String brand) throws SQLException {
+    public boolean saveSupplier (SupplierDTO supplierDTO, String brand) throws SQLException {
+
         Connection connection = DBConnection.getInstance().getConnection();
 
         try {
             connection.setAutoCommit(false);
 
-            boolean isSupplierSave = supplierDAO.save(supplierDTO);
+            boolean isSupplierSave = supplierDAO.save(new Supplier(supplierDTO.getSupplier_id(),supplierDTO.getName(),supplierDTO.getNic(),supplierDTO.getEmail(),supplierDTO.getPhone()));
             if (isSupplierSave) {
                 try {
                     String nextCategoryId = categoryDAO.getNext();
@@ -93,8 +95,8 @@ public class SupplierBOImpl implements SupplierBo {
     }
 
     @Override
-    public boolean updateSupplier(Supplier supplierDTO) throws SQLException, ClassNotFoundException {
-        return supplierDAO.update(supplierDTO);
+    public boolean updateSupplier(SupplierDTO supplierDTO) throws SQLException, ClassNotFoundException {
+        return supplierDAO.update(new Supplier(supplierDTO.getSupplier_id(),supplierDTO.getName(),supplierDTO.getNic(),supplierDTO.getEmail(),supplierDTO.getPhone()));
     }
 
     @Override
@@ -103,8 +105,23 @@ public class SupplierBOImpl implements SupplierBo {
     }
 
     @Override
-    public ArrayList<Supplier> getAllSupplier () throws SQLException, ClassNotFoundException {
-        return supplierDAO.getAll();
+    public ArrayList<SupplierDTO> getAllSupplier () throws SQLException, ClassNotFoundException {
+        ArrayList<Supplier> all = supplierDAO.getAll();
+
+        ArrayList<SupplierDTO> dtos = new ArrayList<>();
+        for (Supplier allSuppliers : all) {
+            SupplierDTO dto = new SupplierDTO(
+                    allSuppliers.getSupplier_id(),
+                    allSuppliers.getName(),
+                    allSuppliers.getNic(),
+                    allSuppliers.getEmail(),
+                    allSuppliers.getPhone()
+
+            );
+            dtos.add(dto);
+        }
+        return dtos;
+
     }
 
 

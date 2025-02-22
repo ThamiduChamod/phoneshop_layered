@@ -17,4 +17,6 @@ public class Supplier {
     private String email;
     private String phone;
 
+
+
 }

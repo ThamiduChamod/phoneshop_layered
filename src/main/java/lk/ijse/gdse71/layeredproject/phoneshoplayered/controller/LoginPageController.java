@@ -30,9 +30,9 @@ public class LoginPageController {
 
     public void loginBtnClick() {
         try {
-            ArrayList<Login> logInDTOS = loginBO.getAllLogins();
+            ArrayList<LoginDTO> logInDTOS = loginBO.getAllLogins();
 
-            for (Login loginDTO : logInDTOS){
+            for (LoginDTO loginDTO : logInDTOS){
                 System.out.println(loginDTO.getPassword());
                 System.out.println(loginDTO.getUserID());
                 if(loginDTO.getUserID().equals(userIdTxt.getText()) && loginDTO.getPassword().equals(pssswoardTxt.getText())){

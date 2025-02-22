@@ -3,9 +3,11 @@ package lk.ijse.gdse71.layeredproject.phoneshoplayered.bo.custom.impl;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.bo.custom.ProfileBO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.DAOFactory;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.SigninDAO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.SigninDTO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Signin;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProfileBOImpl implements ProfileBO {
 
@@ -27,7 +29,8 @@ public class ProfileBOImpl implements ProfileBO {
     }
 
     @Override
-    public Signin getAllUsingID(String ID) throws SQLException, ClassNotFoundException {
-        return signinDAO.getAllUsingID(ID);
+    public SigninDTO getAllUsingID(String ID) throws SQLException, ClassNotFoundException {
+        Signin allUsingID = signinDAO.getAllUsingID(ID);
+        return new SigninDTO(allUsingID.getUserID(),allUsingID.getUserName(),allUsingID.getNic(),allUsingID.getPhoneNumber(),allUsingID.getEmail(),allUsingID.getPassword());
     }
 }

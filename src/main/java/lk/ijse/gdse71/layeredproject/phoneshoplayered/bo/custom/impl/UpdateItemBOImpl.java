@@ -7,6 +7,9 @@ import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.ItemDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.PayDetailsDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.PaymentDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.db.DBConnection;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.CategoryDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.ItemDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.PaymentDTO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Category;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Item;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.PayDetail;
@@ -24,21 +27,21 @@ public class UpdateItemBOImpl implements UpdateItemBO {
     CategoryDAO categoryDAO = (CategoryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.CATEGORY);
 
     @Override
-    public boolean updateItem(ArrayList<Item> itemDTOS, Payment paymentDTO, String supplierId) throws SQLException {
+    public boolean updateItem(ArrayList<ItemDTO> itemDTOS, PaymentDTO paymentDTO, String supplierId) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         try {
             connection.setAutoCommit(false);
             boolean isUpdate = false;
-            for (Item itemDTO : itemDTOS) {
+            for (ItemDTO itemDTO : itemDTOS) {
                 // @isOrderDetailsSaved: Saves the individual order detail
-                isUpdate = itemDAO.update(itemDTO);
+                isUpdate = itemDAO.update(new Item(itemDTO.getItem_id(),itemDTO.getCategory_id(),itemDTO.getName(),itemDTO.getQty(),itemDTO.getPrice()));
 
             }
             if (isUpdate) {
                 System.out.println("update item");
                 // Return false if saving any order detail fails
-                boolean isSavePayment = paymentDAO.save(paymentDTO);
+                boolean isSavePayment = paymentDAO.save(new Payment(paymentDTO.getPaymentID(),paymentDTO.getDate(),paymentDTO.getTotal()));
 
                 if (isSavePayment) {
                     System.out.println("save Payment");
@@ -75,8 +78,9 @@ public class UpdateItemBOImpl implements UpdateItemBO {
     }
 
     @Override
-    public Category findCategoryByName (String name) throws SQLException {
-        return categoryDAO.findByName(name);
+    public CategoryDTO findCategoryByName (String name) throws SQLException {
+        Category byName = categoryDAO.findByName(name);
+        return new CategoryDTO(byName.getCategory_id(),byName.getName(),byName.getSupplier_id());
     }
 
     @Override
@@ -90,7 +94,9 @@ public class UpdateItemBOImpl implements UpdateItemBO {
     }
 
     @Override
-    public Item findByName (String name) throws SQLException {
-        return itemDAO.findByName(name);
+    public ItemDTO findByName (String name) throws SQLException {
+        Item item = itemDAO.findByName(name);
+
+        return new ItemDTO(item.getItem_id(),item.getCategory_id(),item.getName(),item.getQty(),item.getPrice());
     }
 }

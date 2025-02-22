@@ -261,7 +261,7 @@ public class OrderPaymentPageController implements Initializable {
         if (itemNameCmb.getSelectionModel().getSelectedItem()!=null){
             try {
                 String selectedItemName = itemNameCmb.getSelectionModel().getSelectedItem().toString();
-                Item itemDTO = orderPaymentBO.findByName(selectedItemName);
+                ItemDTO itemDTO = orderPaymentBO.findByName(selectedItemName);
 
                 itemIdLbl.setText(itemDTO.getItem_id().toString());
                 unitPriceLbl.setText(String.valueOf(itemDTO.getPrice()));
@@ -405,12 +405,12 @@ public class OrderPaymentPageController implements Initializable {
             );
             orderDetailsDTOS.add(orderDetailsDTO);
         }
-        Payment paymentDTO = new Payment(
+        PaymentDTO paymentDTO = new PaymentDTO(
                 pay_id,
                 date,
                 total
         );
-        Order orderDTO = new Order(
+        OrderDTO orderDTO = new OrderDTO(
                 oderId,
                 date,
                 pay_id,

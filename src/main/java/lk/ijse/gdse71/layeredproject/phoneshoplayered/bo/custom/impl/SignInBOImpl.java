@@ -18,8 +18,8 @@ public class SignInBOImpl implements SignInBO {
     }
 
     @Override
-    public boolean saveUser (Signin signinDTO) throws SQLException, ClassNotFoundException {
-        return signinDAO.save(signinDTO);
+    public boolean saveUser (SigninDTO signinDTO) throws SQLException, ClassNotFoundException {
+        return signinDAO.save(new Signin(signinDTO.getUserID(),signinDTO.getUserName(),signinDTO.getNic(),signinDTO.getPhoneNumber(),signinDTO.getEmail(),signinDTO.getPassword()));
     }
 
 }

@@ -19,8 +19,8 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public boolean saveCustomer (Customer customerDTO) throws SQLException, ClassNotFoundException {
-        return customerDAO.save(customerDTO);
+    public boolean saveCustomer (CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {
+        return customerDAO.save(new Customer(customerDTO.getCustomerID(),customerDTO.getCustomerName(),customerDTO.getNic(),customerDTO.getCustomerPhone(),customerDTO.getCustomerEmail()));
     }
 
     @Override
@@ -29,12 +29,24 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public ArrayList<Customer> getAllCustomers() throws SQLException, ClassNotFoundException {
-        return customerDAO.getAll();
+    public ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {
+        ArrayList<Customer> all = customerDAO.getAll();
+        ArrayList<CustomerDTO> customerDTOs = new ArrayList<>();
+        for (Customer customer : all) {
+            CustomerDTO customerDTO = new CustomerDTO(
+                    customer.getCustomerID(),
+                    customer.getCustomerName(),
+                    customer.getNic(),
+                    customer.getCustomerPhone(),
+                    customer.getCustomerEmail()
+            );
+            customerDTOs.add(customerDTO);
+        }
+        return customerDTOs;
     }
 
     @Override
-    public boolean updateCustomer (Customer customerDTO) throws SQLException, ClassNotFoundException {
-        return customerDAO.update(customerDTO);
+    public boolean updateCustomer (CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {
+        return customerDAO.update(new Customer(customerDTO.getCustomerID(),customerDTO.getCustomerName(),customerDTO.getNic(),customerDTO.getCustomerPhone(),customerDTO.getCustomerEmail()));
     }
 }

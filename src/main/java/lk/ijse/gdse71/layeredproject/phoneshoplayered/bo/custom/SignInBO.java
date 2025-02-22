@@ -9,6 +9,6 @@ import java.sql.SQLException;
 public interface SignInBO extends SuperBo {
 
     public String getNextUserID() throws SQLException, ClassNotFoundException;
-    public boolean saveUser (Signin signinDTO) throws SQLException, ClassNotFoundException;
+    public boolean saveUser (SigninDTO signinDTO) throws SQLException, ClassNotFoundException;
 
 }

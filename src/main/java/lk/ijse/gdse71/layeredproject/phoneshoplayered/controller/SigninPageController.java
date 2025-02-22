@@ -102,7 +102,7 @@ public class SigninPageController implements Initializable {
             return;
         }
         if (isAllValidData && passwordText.getText().equals(confirmPasswordText.getText()) ){
-            Signin userDTO = new Signin(
+            SigninDTO userDTO = new SigninDTO(
                     id,
                     name,
                     nic,

@@ -229,7 +229,7 @@ public class ItemPageController implements Initializable {
         try {
             if (cmbBrandname.getSelectionModel().getSelectedItem() != null) {
 
-                Category categoryDTO = itemBO.findByName(cmbBrandname.getSelectionModel().getSelectedItem().toString());
+                CategoryDTO categoryDTO = itemBO.findByName(cmbBrandname.getSelectionModel().getSelectedItem().toString());
 
                 if (categoryDTO != null) {
                     categoryIdLBL.setText(categoryDTO.getCategory_id());
@@ -333,12 +333,12 @@ public class ItemPageController implements Initializable {
         Date date = Date.valueOf(dateLbl.getText());
         String supplierId = supplierIdLbl.getText();
 
-        ArrayList<Item> itemDTOS = new ArrayList<>();
+        ArrayList<ItemDTO> itemDTOS = new ArrayList<>();
         double totalPrice = 0.00;
         for (ItemTM itemTM : itemTMS) {
 
             // Create order details for each cart item
-            Item itemDTO = new Item(
+            ItemDTO itemDTO = new ItemDTO(
                     itemTM.getItemId(),
                     categoryIdLBL.getText(),
                     itemTM.getItemName(),
@@ -353,7 +353,7 @@ public class ItemPageController implements Initializable {
             itemDTOS.add(itemDTO);
         }
 
-        Payment paymentDTO = new Payment(
+        PaymentDTO paymentDTO = new PaymentDTO(
                 paymentIdLbl.getText(),
                 dates,
                 totalPrice
@@ -363,7 +363,7 @@ public class ItemPageController implements Initializable {
 
         try {
             boolean isSave = itemBO.insertItem(itemDTOS,paymentDTO,supplierId);
-            System.out.println("11111111111111111111111111111111111111111");
+
             if (isSave) {
 
                 refeshPage();

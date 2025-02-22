@@ -107,7 +107,7 @@ public class CustomerPageController  implements Initializable {
 
         if (validAlldata) {
 
-            Customer customerDTO = new Customer(
+            CustomerDTO customerDTO = new CustomerDTO(
                     id,
                     name,
                     nic,
@@ -232,7 +232,7 @@ public class CustomerPageController  implements Initializable {
 
         if (isValidName && isValidEmail && isValidPhone && isValidNic) {
 
-            Customer customerDTO = new Customer(
+            CustomerDTO customerDTO = new CustomerDTO(
                     id,
                     name,
                     nic,
@@ -259,10 +259,10 @@ public class CustomerPageController  implements Initializable {
 
     public void loadTableData() {
         try {
-            ArrayList<Customer> customerDTOS = customerBO.getAllCustomers();
+            ArrayList<CustomerDTO> customerDTOS = customerBO.getAllCustomers();
 
             ObservableList<CustomerTM> customerTMS = FXCollections.observableArrayList();
-            for (Customer customerDTO : customerDTOS) {
+            for (CustomerDTO customerDTO : customerDTOS) {
                 CustomerTM customerTM = new CustomerTM(
                         customerDTO.getCustomerID(),
                         customerDTO.getCustomerName(),

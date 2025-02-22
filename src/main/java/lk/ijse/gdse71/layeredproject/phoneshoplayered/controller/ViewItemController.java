@@ -48,10 +48,10 @@ public class ViewItemController implements Initializable {
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         try {
-            ArrayList<Item> itemDTOS = itemBO.getAllItems();
+            ArrayList<ItemDTO> itemDTOS = itemBO.getAllItems();
             ObservableList<ViewItemTM> itemTMS = FXCollections.observableArrayList();
 
-            for (Item itemDTO : itemDTOS) {
+            for (ItemDTO itemDTO : itemDTOS) {
                 ViewItemTM viewItemTM = new ViewItemTM(
                         itemDTO.getItem_id(),
                         itemDTO.getCategory_id(),

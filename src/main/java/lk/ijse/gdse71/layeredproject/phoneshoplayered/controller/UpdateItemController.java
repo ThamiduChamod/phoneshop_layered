@@ -69,7 +69,7 @@ public class UpdateItemController implements Initializable {
             System.out.println(selectBarandName);
 
             try {
-                Category categoryDTO = updateItemBO.findCategoryByName(selectBarandName);
+                CategoryDTO categoryDTO = updateItemBO.findCategoryByName(selectBarandName);
                 if (categoryDTO != null) {
 
                     brandIdLbl.setText(categoryDTO.getCategory_id());
@@ -123,7 +123,7 @@ public class UpdateItemController implements Initializable {
 
 
                 try {
-                    Item itemDTOS = updateItemBO.findByName(selectItemName);
+                    ItemDTO itemDTOS = updateItemBO.findByName(selectItemName);
 
 
                     itemIdLbl.setText(itemDTOS.getItem_id());
@@ -158,12 +158,12 @@ public class UpdateItemController implements Initializable {
         Date date = Date.valueOf(LocalDate.now().toString());
         String supplierId = supplierIdLbl.getText();
 
-        ArrayList<Item> itemDTOS = new ArrayList<>();
+        ArrayList<ItemDTO> itemDTOS = new ArrayList<>();
         double totalPrice = 0.00;
         for (UpdateItemTM itemTM : updateItemTMS) {
 
             // Create order details for each cart item
-            Item itemDTO = new Item(
+            ItemDTO itemDTO = new ItemDTO(
                     itemTM.getItemId(),
                     brandIdLbl.getText(),
                     itemTM.getItemName(),
@@ -178,7 +178,7 @@ public class UpdateItemController implements Initializable {
             itemDTOS.add(itemDTO);
         }
 
-        Payment paymentDTO = new Payment(
+        PaymentDTO paymentDTO = new PaymentDTO(
                 paymentIdLbl.getText(),
                 date,
                 totalPrice

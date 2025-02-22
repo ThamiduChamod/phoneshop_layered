@@ -50,7 +50,7 @@ public class SupplierDAOImpl implements SupplierDAO {
                 DTO.getName(),
                 DTO.getNic(),
                 DTO.getEmail(),
-                DTO.getEmail()
+                DTO.getPhone()
 
         );
     }

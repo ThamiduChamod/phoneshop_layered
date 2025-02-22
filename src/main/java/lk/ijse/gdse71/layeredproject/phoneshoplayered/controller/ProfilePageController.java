@@ -120,7 +120,7 @@ public class ProfilePageController {
         System.out.println("Setting data for userId: " + userId); // Debug output
 
         try {
-            Signin userDetails = profileBO.getAllUsingID(userId);
+            SigninDTO userDetails = profileBO.getAllUsingID(userId);
 
             nameLbl.setText(userDetails.getUserName());
             nicLbl.setText(userDetails.getNic());

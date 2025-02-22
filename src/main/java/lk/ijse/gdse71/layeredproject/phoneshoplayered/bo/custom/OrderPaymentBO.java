@@ -1,15 +1,15 @@
 package lk.ijse.gdse71.layeredproject.phoneshoplayered.bo.custom;
 
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.bo.SuperBo;
-import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Item;
-import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Order;
-import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Payment;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.ItemDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.OrderDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.PaymentDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface OrderPaymentBO extends SuperBo {
-     boolean saveOrder(Payment paymentDTO, Order order) throws SQLException;
+     boolean saveOrder(PaymentDTO paymentDTO, OrderDTO order) throws SQLException;
      String getNextOrderID () throws SQLException, ClassNotFoundException;
      String getNextPaymentID () throws SQLException, ClassNotFoundException;
      ArrayList<String> getAllCustomerNames () throws SQLException, ClassNotFoundException;
@@ -17,5 +17,5 @@ public interface OrderPaymentBO extends SuperBo {
      ArrayList<String> getAllBrandNames () throws SQLException;
      String getBrandIdFindByName (String name) throws SQLException;
      ArrayList<String> allItemNameFindByCategoryId (String ID) throws SQLException;
-     Item findByName (String name) throws SQLException;
+     ItemDTO findByName (String name) throws SQLException;
 }

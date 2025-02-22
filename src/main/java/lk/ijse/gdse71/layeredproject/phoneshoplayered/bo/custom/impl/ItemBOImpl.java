@@ -7,6 +7,9 @@ import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.ItemDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.PayDetailsDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.dao.custom.PaymentDAO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.db.DBConnection;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.CategoryDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.ItemDTO;
+import lk.ijse.gdse71.layeredproject.phoneshoplayered.dto.PaymentDTO;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Category;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.Item;
 import lk.ijse.gdse71.layeredproject.phoneshoplayered.entity.PayDetail;
@@ -25,17 +28,17 @@ public class ItemBOImpl implements ItemBO {
 
 
     @Override
-    public boolean insertItem(ArrayList<Item> itemDTOS, Payment paymentDTO, String supplierId) throws SQLException {
+    public boolean insertItem(ArrayList<ItemDTO> itemDTOS, PaymentDTO paymentDTO, String supplierId) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         try {
             connection.setAutoCommit(false);
-            for (Item itemDTO : itemDTOS) {
-                boolean isitemSaved = itemDAO.save(itemDTO);
+            for (ItemDTO itemDTO : itemDTOS) {
+                boolean isitemSaved = itemDAO.save(new Item(itemDTO.getItem_id(),itemDTO.getCategory_id(),itemDTO.getName(),itemDTO.getQty(),itemDTO.getPrice()));
 
                 if (isitemSaved) {
                     System.out.println("save item");
-                    boolean isSavePayment = paymentDAO.save(paymentDTO);
+                    boolean isSavePayment = paymentDAO.save(new Payment(paymentDTO.getPaymentID(),paymentDTO.getDate(),paymentDTO.getTotal()));
 
                     if (isSavePayment) {
                         System.out.println("save payment");
@@ -74,8 +77,9 @@ public class ItemBOImpl implements ItemBO {
     }
 
     @Override
-    public Category findByName (String name) throws SQLException {
-        return categoryDAO.findByName(name);
+    public CategoryDTO findByName (String name) throws SQLException {
+        Category byName = categoryDAO.findByName(name);
+        return new CategoryDTO(byName.getCategory_id(),byName.getName(),byName.getSupplier_id());
     }
 
     @Override

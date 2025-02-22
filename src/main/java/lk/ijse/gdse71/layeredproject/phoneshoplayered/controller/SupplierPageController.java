@@ -81,8 +81,10 @@ public class SupplierPageController implements Initializable {
         boolean validAlldata = isValidName && isValidNic && isValidEmail && isValidPhone;
 
         if (validAlldata){
+            System.out.println(phone);
+            System.out.println(email);
 
-            Supplier supplierDTO = new Supplier(
+            SupplierDTO supplierDTO = new SupplierDTO(
                     id,
                     name,
                     nic,
@@ -153,7 +155,7 @@ public class SupplierPageController implements Initializable {
 
         if (validAlldata) {
 
-            Supplier supplierDTO = new Supplier(
+            SupplierDTO supplierDTO = new SupplierDTO(
                     id,
                     name,
                     nic,
@@ -250,6 +252,7 @@ public class SupplierPageController implements Initializable {
         txtNic.clear();
         txtEmail.clear();
         txtPhone.clear();
+        txtBrand.clear();
 
         btnSave.setDisable(false);
         btnDelete.setDisable(true);
@@ -272,10 +275,10 @@ public class SupplierPageController implements Initializable {
 
     private void loadAllSupplier (){
         try {
-            ArrayList<Supplier> supplierDTOS = supplierBo.getAllSupplier();
+            ArrayList<SupplierDTO> supplierDTOS = supplierBo.getAllSupplier();
             ObservableList<SupplierTM> supplierTMS = FXCollections.observableArrayList();
 
-            for (Supplier supplierDTO : supplierDTOS) {
+            for (SupplierDTO supplierDTO : supplierDTOS) {
                 SupplierTM supplierTM = new SupplierTM(
                         supplierDTO.getSupplier_id(),
                         supplierDTO.getName(),
